@@ -95,25 +95,24 @@ public class GameRoomController {
     private void startBlinkingEffect(Label label) {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, e -> {
-                    label.setStyle(label.getStyle() +
-                            "-fx-border-color: yellow; " +
+                    label.setStyle("-fx-background-color: rgba(128, 0, 0, 0.9); " + // Semi-transparent dark red
+                            "-fx-border-color: #FFD700; " + // Gold border
                             "-fx-border-width: 3; " +
                             "-fx-border-radius: 10; " +
-                            "-fx-background-color: #800000; " +
                             "-fx-padding: 10px; " +
                             "-fx-text-fill: white; " +
                             "-fx-font-size: 18px; " +
                             "-fx-font-weight: bold;");
                     label.setEffect(new DropShadow(20, Color.YELLOW));
                 }),
-                new KeyFrame(Duration.seconds(0.2), e -> {
-                    label.setStyle(label.getStyle() +
+                new KeyFrame(Duration.seconds(0.5), e -> {
+                    label.setStyle("-fx-background-color: rgba(128, 0, 0, 0.9); " +
                             "-fx-border-width: 0; " +
-                            "-fx-background-color: #800000; " +
                             "-fx-padding: 10px; " +
                             "-fx-text-fill: white; " +
                             "-fx-font-size: 18px; " +
-                            "-fx-font-weight: bold;");
+                            "-fx-font-weight: bold; " +
+                            "-fx-background-radius: 10;");
                     label.setEffect(new DropShadow(10, Color.RED));
                 }));
         timeline.setCycleCount(Timeline.INDEFINITE);
@@ -121,13 +120,13 @@ public class GameRoomController {
     }
 
     private void stopBlinkingEffect(Label label) {
-        label.setStyle("-fx-background-color: #800000; " +
+        label.setStyle("-fx-background-color: rgba(128, 0, 0, 0.9); " +
                 "-fx-padding: 10px; " +
                 "-fx-text-fill: white; " +
                 "-fx-font-size: 18px; " +
                 "-fx-font-weight: bold; " +
                 "-fx-background-radius: 10; " +
-                "-fx-border-width: 0;");
+                "-fx-effect: dropshadow(gaussian, rgba(255,0,0,0.8), 10, 0.5, 0, 0);"); // Subtle red glow
         label.setEffect(new DropShadow(10, Color.RED));
     }
 
@@ -194,17 +193,19 @@ public class GameRoomController {
     private void setPropButton(Button b, int n) {
         Platform.runLater(() -> {
             if (n == 0) {
-                b.setText("SAFE");
-                b.setStyle("-fx-background-color: #1a4a1a; " + // Dark green
+                b.setText("Safe");
+                b.setStyle("-fx-background-color: rgba(26, 74, 26, 0.8); " + // Semi-transparent dark green
                         "-fx-text-fill: #7DFD79; " + // Light green text
                         "-fx-background-radius: 10; " +
-                        "-fx-font-weight: bold;");
+                        "-fx-font-weight: bold; " +
+                        "-fx-effect: dropshadow(gaussian, #7DFD79, 10, 0.5, 0, 0);"); // Green glow effect
             } else {
-                b.setText("DANGER");
-                b.setStyle("-fx-background-color: #4a1a1a; " + // Dark red
+                b.setText("DEATH");
+                b.setStyle("-fx-background-color: rgba(74, 26, 26, 0.8); " + // Semi-transparent dark red
                         "-fx-text-fill: #FF7C7C; " + // Light red text
                         "-fx-background-radius: 10; " +
-                        "-fx-font-weight: bold;");
+                        "-fx-font-weight: bold; " +
+                        "-fx-effect: dropshadow(gaussian, #FF0000, 15, 0.7, 0, 0);"); // Red glow effect
             }
             b.setDisable(true);
         });
