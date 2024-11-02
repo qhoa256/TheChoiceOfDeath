@@ -22,7 +22,14 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.sql.Timestamp;
 
 public class MainController {
-
+    @FXML
+    private Button searchButton;
+    @FXML
+    private TabPane mainTabPane;
+    @FXML
+    private Button filterOnlineButton;
+    @FXML
+    private Button logoutButton;
     @FXML
     private TableColumn<Match, String> matchTimeColumn;
 
