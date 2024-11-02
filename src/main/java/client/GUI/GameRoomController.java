@@ -135,17 +135,23 @@ public class GameRoomController {
         client.sendMessage(choosingBoxMessage);
     }
 
-    private void setPropButton(Button b, int n){
-        if(n == 0){
-            b.setText("SAFE");
-            b.setStyle("-fx-background-color: #7DFD79");
+    private void setPropButton(Button b, int n) {
+        Platform.runLater(() -> {
+            if(n == 0) {
+                b.setText("SAFE");
+                b.setStyle("-fx-background-color: #1a4a1a; " +  // Dark green
+                          "-fx-text-fill: #7DFD79; " +         // Light green text
+                          "-fx-background-radius: 10; " +
+                          "-fx-font-weight: bold;");
+            } else {
+                b.setText("DANGER");
+                b.setStyle("-fx-background-color: #4a1a1a; " +  // Dark red
+                          "-fx-text-fill: #FF7C7C; " +         // Light red text
+                          "-fx-background-radius: 10; " +
+                          "-fx-font-weight: bold;");
+            }
             b.setDisable(true);
-        }
-        else{
-            b.setText("DANGER");
-            b.setStyle("-fx-background-color: #FF7C7C");
-            b.setDisable(true);
-        }
+        });
     }
 
     public void safeProcess(String[] part) throws IOException{
