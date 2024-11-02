@@ -7,10 +7,21 @@ import java.sql.SQLException;
 import java.util.Optional;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
+import javafx.util.Duration;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.effect.DropShadow;
+import javafx.scene.paint.Color;
 
 public class GameRoomController {
 
@@ -57,7 +68,6 @@ public class GameRoomController {
     private int scoreP1 = 0;
     private int scoreP2 = 0;
 
-
     public void setClient(Client client) {
         this.client = client;
     }
@@ -78,41 +88,86 @@ public class GameRoomController {
         }
     }
 
-    public String splitID(String id){
+    public String splitID(String id) {
         return new String("" + id.charAt(6) + id.charAt(8));
     }
-    //Xu ly chon o
-    public void handleYourTurn(String p){
-        if(p.equals("P1")){
-            button1_1.setDisable(false);
-            button1_2.setDisable(false);
-            button1_3.setDisable(false);
-            button1_4.setDisable(false);
-            button1_5.setDisable(false);
-            button1_6.setDisable(false);
-            button2_1.setDisable(true);
-            button2_2.setDisable(true);
-            button2_3.setDisable(true);
-            button2_4.setDisable(true);
-            button2_5.setDisable(true);
-            button2_6.setDisable(true);
-        } else {
-            button2_1.setDisable(false);
-            button2_2.setDisable(false);
-            button2_3.setDisable(false);
-            button2_4.setDisable(false);
-            button2_5.setDisable(false);
-            button2_6.setDisable(false);
-            button1_1.setDisable(true);
-            button1_2.setDisable(true);
-            button1_3.setDisable(true);
-            button1_4.setDisable(true);
-            button1_5.setDisable(true);
-            button1_6.setDisable(true);
 
-        }
+    private void startBlinkingEffect(Label label) {
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, e -> {
+                    label.setStyle(label.getStyle() +
+                            "-fx-border-color: yellow; " +
+                            "-fx-border-width: 3; " +
+                            "-fx-border-radius: 10; " +
+                            "-fx-background-color: #800000; " +
+                            "-fx-padding: 10px; " +
+                            "-fx-text-fill: white; " +
+                            "-fx-font-size: 18px; " +
+                            "-fx-font-weight: bold;");
+                    label.setEffect(new DropShadow(20, Color.YELLOW));
+                }),
+                new KeyFrame(Duration.seconds(0.2), e -> {
+                    label.setStyle(label.getStyle() +
+                            "-fx-border-width: 0; " +
+                            "-fx-background-color: #800000; " +
+                            "-fx-padding: 10px; " +
+                            "-fx-text-fill: white; " +
+                            "-fx-font-size: 18px; " +
+                            "-fx-font-weight: bold;");
+                    label.setEffect(new DropShadow(10, Color.RED));
+                }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
-    public void disableAll(){
+
+    private void stopBlinkingEffect(Label label) {
+        label.setStyle("-fx-background-color: #800000; " +
+                "-fx-padding: 10px; " +
+                "-fx-text-fill: white; " +
+                "-fx-font-size: 18px; " +
+                "-fx-font-weight: bold; " +
+                "-fx-background-radius: 10; " +
+                "-fx-border-width: 0;");
+        label.setEffect(new DropShadow(10, Color.RED));
+    }
+
+    public void handleYourTurn(String p) {
+        Platform.runLater(() -> {
+            if (p.equals("P1")) {
+                startBlinkingEffect(player1Label);
+                stopBlinkingEffect(player2Label);
+                button1_1.setDisable(false);
+                button1_2.setDisable(false);
+                button1_3.setDisable(false);
+                button1_4.setDisable(false);
+                button1_5.setDisable(false);
+                button1_6.setDisable(false);
+                button2_1.setDisable(true);
+                button2_2.setDisable(true);
+                button2_3.setDisable(true);
+                button2_4.setDisable(true);
+                button2_5.setDisable(true);
+                button2_6.setDisable(true);
+            } else {
+                startBlinkingEffect(player2Label);
+                stopBlinkingEffect(player1Label);
+                button2_1.setDisable(false);
+                button2_2.setDisable(false);
+                button2_3.setDisable(false);
+                button2_4.setDisable(false);
+                button2_5.setDisable(false);
+                button2_6.setDisable(false);
+                button1_1.setDisable(true);
+                button1_2.setDisable(true);
+                button1_3.setDisable(true);
+                button1_4.setDisable(true);
+                button1_5.setDisable(true);
+                button1_6.setDisable(true);
+            }
+        });
+    }
+
+    public void disableAll() {
         button1_1.setDisable(true);
         button1_2.setDisable(true);
         button1_3.setDisable(true);
@@ -126,8 +181,9 @@ public class GameRoomController {
         button2_5.setDisable(true);
         button2_6.setDisable(true);
     }
+
     @FXML
-    private void handleChoosingBox(javafx.event.ActionEvent event) throws IOException{
+    private void handleChoosingBox(javafx.event.ActionEvent event) throws IOException {
         Button clickedButton = (Button) event.getSource();
         String buttonId = clickedButton.getId();
         System.out.println(buttonId);
@@ -137,80 +193,80 @@ public class GameRoomController {
 
     private void setPropButton(Button b, int n) {
         Platform.runLater(() -> {
-            if(n == 0) {
+            if (n == 0) {
                 b.setText("SAFE");
-                b.setStyle("-fx-background-color: #1a4a1a; " +  // Dark green
-                          "-fx-text-fill: #7DFD79; " +         // Light green text
-                          "-fx-background-radius: 10; " +
-                          "-fx-font-weight: bold;");
+                b.setStyle("-fx-background-color: #1a4a1a; " + // Dark green
+                        "-fx-text-fill: #7DFD79; " + // Light green text
+                        "-fx-background-radius: 10; " +
+                        "-fx-font-weight: bold;");
             } else {
                 b.setText("DANGER");
-                b.setStyle("-fx-background-color: #4a1a1a; " +  // Dark red
-                          "-fx-text-fill: #FF7C7C; " +         // Light red text
-                          "-fx-background-radius: 10; " +
-                          "-fx-font-weight: bold;");
+                b.setStyle("-fx-background-color: #4a1a1a; " + // Dark red
+                        "-fx-text-fill: #FF7C7C; " + // Light red text
+                        "-fx-background-radius: 10; " +
+                        "-fx-font-weight: bold;");
             }
             b.setDisable(true);
         });
     }
 
-    public void safeProcess(String[] part) throws IOException{
-        if(part[0].equals("P1")){
+    public void safeProcess(String[] part) throws IOException {
+        if (part[0].equals("P1")) {
             scoreP1++;
             String butId = part[1];
             player1ScoreLabel.setText("Score: " + scoreP1);
-            while(true){
-                if (butId.equals(button1_1.getId())){
+            while (true) {
+                if (butId.equals(button1_1.getId())) {
                     setPropButton(button1_1, 0);
                     break;
                 }
-                if (butId.equals(button1_2.getId())){
+                if (butId.equals(button1_2.getId())) {
                     setPropButton(button1_2, 0);
                     break;
                 }
-                if (butId.equals(button1_3.getId())){
+                if (butId.equals(button1_3.getId())) {
                     setPropButton(button1_3, 0);
                     break;
                 }
-                if (butId.equals(button1_4.getId())){
+                if (butId.equals(button1_4.getId())) {
                     setPropButton(button1_4, 0);
                     break;
                 }
-                if (butId.equals(button1_5.getId())){
+                if (butId.equals(button1_5.getId())) {
                     setPropButton(button1_5, 0);
                     break;
                 }
-                if (butId.equals(button1_6.getId())){
+                if (butId.equals(button1_6.getId())) {
                     setPropButton(button1_6, 0);
                     break;
                 }
             }
-        } else{
+        } else {
             scoreP2++;
             String butId = part[1];
             player2ScoreLabel.setText("Score: " + scoreP2);
-            while(true){
-                if (butId.equals(button2_1.getId())){
+            while (true) {
+                if (butId.equals(button2_1.getId())) {
                     setPropButton(button2_1, 0);
                     break;
                 }
-                if (butId.equals(button2_2.getId())){
+                if (butId.equals(button2_2.getId())) {
                     setPropButton(button2_2, 0);
                     break;
                 }
-                if (butId.equals(button2_3.getId())){
+                if (butId.equals(button2_3.getId())) {
                     setPropButton(button2_3, 0);
                     break;
                 }
-                if (butId.equals(button2_4.getId())){
+                if (butId.equals(button2_4.getId())) {
                     setPropButton(button2_4, 0);
                     break;
                 }
-                if (butId.equals(button2_5.getId())){
+                if (butId.equals(button2_5.getId())) {
                     setPropButton(button2_5, 0);
                     break;
                 }
-                if (butId.equals(button2_6.getId())){
+                if (butId.equals(button2_6.getId())) {
                     setPropButton(button2_6, 0);
                     break;
                 }
@@ -218,61 +274,61 @@ public class GameRoomController {
         }
     }
 
-    public void dangerProcess(String[] part) throws IOException{
-        if(part[0].equals("P1")){
+    public void dangerProcess(String[] part) throws IOException {
+        if (part[0].equals("P1")) {
             String butId = part[1];
             player1ScoreLabel.setText("Đã chết.");
-            while(true){
-                if (butId.equals(button1_1.getId())){
+            while (true) {
+                if (butId.equals(button1_1.getId())) {
                     setPropButton(button1_1, 1);
                     break;
                 }
-                if (butId.equals(button1_2.getId())){
+                if (butId.equals(button1_2.getId())) {
                     setPropButton(button1_2, 1);
                     break;
                 }
-                if (butId.equals(button1_3.getId())){
+                if (butId.equals(button1_3.getId())) {
                     setPropButton(button1_3, 1);
                     break;
                 }
-                if (butId.equals(button1_4.getId())){
+                if (butId.equals(button1_4.getId())) {
                     setPropButton(button1_4, 1);
                     break;
                 }
-                if (butId.equals(button1_5.getId())){
+                if (butId.equals(button1_5.getId())) {
                     setPropButton(button1_5, 1);
                     break;
                 }
-                if (butId.equals(button1_6.getId())){
+                if (butId.equals(button1_6.getId())) {
                     setPropButton(button1_6, 1);
                     break;
                 }
             }
-        } else{
+        } else {
             String butId = part[1];
             player2ScoreLabel.setText("Đã chết.");
-            while(true){
-                if (butId.equals(button2_1.getId())){
+            while (true) {
+                if (butId.equals(button2_1.getId())) {
                     setPropButton(button2_1, 1);
                     break;
                 }
-                if (butId.equals(button2_2.getId())){
+                if (butId.equals(button2_2.getId())) {
                     setPropButton(button2_2, 1);
                     break;
                 }
-                if (butId.equals(button2_3.getId())){
+                if (butId.equals(button2_3.getId())) {
                     setPropButton(button2_3, 1);
                     break;
                 }
-                if (butId.equals(button2_4.getId())){
+                if (butId.equals(button2_4.getId())) {
                     setPropButton(button2_4, 1);
                     break;
                 }
-                if (butId.equals(button2_5.getId())){
+                if (butId.equals(button2_5.getId())) {
                     setPropButton(button2_5, 1);
                     break;
                 }
-                if (butId.equals(button2_6.getId())){
+                if (butId.equals(button2_6.getId())) {
                     setPropButton(button2_6, 1);
                     break;
                 }
@@ -311,7 +367,7 @@ public class GameRoomController {
         });
     }
 
-//Loi: ca 2 cung choi lai thi chi 1 nguoi co the choi lai
+    // Loi: ca 2 cung choi lai thi chi 1 nguoi co the choi lai
     public void promptPlayAgain() {
         Platform.runLater(() -> {
             Alert alert = new Alert(AlertType.CONFIRMATION);

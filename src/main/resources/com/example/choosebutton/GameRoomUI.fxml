@@ -20,8 +20,8 @@
                           -fx-text-fill: white;
                           -fx-font-size: 18px;
                           -fx-font-weight: bold;
-                          -fx-background-radius: 10;" 
-                   text="Player 1">
+                          -fx-background-radius: 10;
+                          -fx-border-width: 0;">
                 <effect>
                     <DropShadow color="red" spread="0.3"/>
                 </effect>
