@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="client.GUI.MainController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <TabPane fx:id="mainTabPane">
+        <!-- Tab Màn hình chính -->
+        <Tab text="Màn hình chính">
+            <AnchorPane>
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <!-- Thanh công cụ chứa các nút và trường tìm kiếm -->
+                    <HBox spacing="10">
+                        <Button fx:id="filterOnlineButton" text="Lọc Player Online" onAction="#handleFilterOnline"/>
+                        <TextField fx:id="searchField" promptText="Tìm kiếm người chơi..." />
+                        <Button fx:id="searchButton" text="Tìm kiếm" onAction="#handleSearch"/>
+                    </HBox>
+
+                    <!-- Danh sách người chơi -->
+                    <HBox spacing="10">
+                        <TableView fx:id="usersTable" prefWidth="400" prefHeight="400">
+                            <columns>
+                                <TableColumn fx:id="nameColumn" text="Tên người chơi" />
+                                <TableColumn fx:id="statusColumn" text="Trạng thái" />
+                                <TableColumn fx:id="pointsColumn" text="Điểm" />
+                            </columns>
+                        </TableView>
+
+                        <!-- Bảng xếp hạng top 20 người chơi -->
+                        <VBox spacing="5" prefWidth="200">
+                            <Label text="Bảng xếp hạng (Top 20)" style="-fx-font-weight: bold; -fx-font-size: 16;" />
+                            <TableView fx:id="leaderboardTable" prefWidth="200" prefHeight="400">
+                                <columns>
+                                    <TableColumn fx:id="lbNameColumn" text="Tên người chơi" />
+                                    <TableColumn fx:id="lbPointsColumn" text="Điểm" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </HBox>
+                </VBox>
+            </AnchorPane>
+        </Tab>
+
+        <!-- Tab Lịch sử đấu -->
+        <Tab text="Lịch sử đấu">
+            <AnchorPane>
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="10" right="10" bottom="10" left="10"/>
+                    </padding>
+                    <Label text="Lịch sử đấu của bạn" style="-fx-font-weight: bold; -fx-font-size: 16;" />
+
+                    <!-- Danh sách các trận đấu đã qua -->
+                    <TableView fx:id="historyTable" prefWidth="600" prefHeight="400">
+                        <columns>
+                            <TableColumn fx:id="matchIdColumn" text="ID"/>
+                            <TableColumn fx:id="opponentColumn" text="Tên đối thủ" />
+                            <TableColumn fx:id="matchResultColumn" text="Kết quả" />
+                            <TableColumn fx:id="timeColumn" text="Thời gian thi đấu" />
+                        </columns>
+                    </TableView>
+                </VBox>
+            </AnchorPane>
+        </Tab>
+    </TabPane>
+
+
+</AnchorPane>

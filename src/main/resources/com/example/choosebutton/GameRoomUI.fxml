@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.GUI.GameRoomController">
+    <HBox alignment="CENTER" prefHeight="600" prefWidth="1000" spacing="30">
+
+        <!-- Left Player Panel -->
+        <VBox alignment="CENTER" spacing="15">
+            <Label fx:id="player1Label" prefWidth="120" style="-fx-background-color: orange; -fx-padding: 5px;" text="Player 1" />
+            <Label fx:id="player1ScoreLabel" prefWidth="120" text="Score: 0" />
+            <GridPane hgap="10" vgap="10">
+                <Button fx:id="button1_1" prefHeight="50" prefWidth="80" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#handleChoosingBox"/>
+                <Button fx:id="button1_2" prefHeight="50" prefWidth="80" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#handleChoosingBox"/>
+                <Button fx:id="button1_3" prefHeight="50" prefWidth="80" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#handleChoosingBox"/>
+                <Button fx:id="button1_4" prefHeight="50" prefWidth="80" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#handleChoosingBox"/>
+                <Button fx:id="button1_5" prefHeight="50" prefWidth="80" GridPane.columnIndex="0" GridPane.rowIndex="2" onAction="#handleChoosingBox"/>
+                <Button fx:id="button1_6" prefHeight="50" prefWidth="80" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#handleChoosingBox"/>
+                <columnConstraints>
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
+            </GridPane>
+        </VBox>
+
+        <!-- Right Player Panel -->
+        <VBox alignment="CENTER" spacing="15">
+            <Label fx:id="player2Label" prefWidth="120" style="-fx-background-color: orange; -fx-padding: 5px;" text="Player 2" />
+            <Label fx:id="player2ScoreLabel" prefWidth="120" text="Score: 0" />
+            <GridPane hgap="10" vgap="10">
+                <Button fx:id="button2_1" prefHeight="50" prefWidth="80" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#handleChoosingBox"/>
+                <Button fx:id="button2_2" prefHeight="50" prefWidth="80" GridPane.columnIndex="1" GridPane.rowIndex="0" onAction="#handleChoosingBox"/>
+                <Button fx:id="button2_3" prefHeight="50" prefWidth="80" GridPane.columnIndex="0" GridPane.rowIndex="1" onAction="#handleChoosingBox"/>
+                <Button fx:id="button2_4" prefHeight="50" prefWidth="80" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#handleChoosingBox"/>
+                <Button fx:id="button2_5" prefHeight="50" prefWidth="80" GridPane.columnIndex="0" GridPane.rowIndex="2" onAction="#handleChoosingBox"/>
+                <Button fx:id="button2_6" prefHeight="50" prefWidth="80" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#handleChoosingBox"/>
+                <columnConstraints>
+                    <ColumnConstraints />
+                    <ColumnConstraints />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints />
+                    <RowConstraints />
+                    <RowConstraints />
+                </rowConstraints>
+            </GridPane>
+        </VBox>
+
+        <!-- Chat Panel -->
+        <VBox alignment="CENTER" prefHeight="250" prefWidth="350" spacing="10">
+            <Label text="Chat Area" />
+            <TextArea fx:id="chatArea" editable="false" prefHeight="200" text="" />
+            <HBox spacing="5">
+                <TextField fx:id="chatInput" promptText="Enter message" />
+                <Button fx:id="sendButton" onAction="#handleSendChat" text="Send" />
+            </HBox>
+            <Button fx:id="quitButton" mnemonicParsing="false" prefHeight="25.0" prefWidth="154.0" text="Thoát Trận" onAction="#handleQuitGame"/>
+        </VBox>
+
+    </HBox>
+</AnchorPane>
