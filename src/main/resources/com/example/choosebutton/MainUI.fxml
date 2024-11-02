@@ -30,7 +30,7 @@
                                 <DropShadow color="red" spread="0.3" />
                             </effect>
                         </Button>
-                        <TextField fx:id="searchField" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="39.0" prefWidth="518.0" promptText="Tìm kiếm người chơi..." style="-fx-background-color: #f7cccd; -fx-text-fill: black; -fx-prompt-text-fill: black; -fx-background-radius: 5;" />
+                        <TextField fx:id="searchField" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="518.0" promptText="Tìm kiếm người chơi..." style="-fx-background-color: #f7cccd; -fx-text-fill: black; -fx-prompt-text-fill: black; -fx-background-radius: 5;" />
                         <Button fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleSearch" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #2d0606; -fx-background-radius: 5; -fx-text-fill: #ef4346; -fx-font-size: 16px;" text="Tìm kiếm">
                             <effect>
                                 <DropShadow color="red" spread="0.3" />
@@ -62,14 +62,14 @@
                     <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                     </padding>
-                    <Label style="-fx-font-weight: bold;                                   -fx-font-size: 16;                                   -fx-text-fill: #ff0000;" text="Lịch sử đấu của bạn" />
+                    <Label style="-fx-font-weight: bold; -fx-font-size: 20; -fx-text-fill: #ff0000;" text="Lịch sử chiến trận" />
 
                     <TableView fx:id="historyTable" prefHeight="486.0" prefWidth="807.0" style="-fx-background-color: #2a1f1f;                                     -fx-text-fill: white;                                     -fx-control-inner-background: #2a1f1f;                                     -fx-table-cell-border-color: #800000;">
                         <columns>
-                            <TableColumn fx:id="matchIdColumn" prefWidth="67.20001065731049" style="-fx-text-fill: white;" text="ID" />
-                            <TableColumn fx:id="opponentColumn" prefWidth="193.5999984741211" style="-fx-text-fill: white;" text="Tên đối thủ" />
-                            <TableColumn fx:id="matchResultColumn" prefWidth="180.800048828125" style="-fx-text-fill: white;" text="Kết quả" />
-                            <TableColumn fx:id="timeColumn" prefWidth="357.5999694824219" style="-fx-text-fill: white;" text="Thời gian thi đấu" />
+                            <TableColumn fx:id="matchIdColumn" prefWidth="67.20001065731049" style="-fx-text-fill: white; -fx-alignment: center;" text="ID" />
+                            <TableColumn fx:id="opponentColumn" prefWidth="193.5999984741211" style="-fx-text-fill: white; -fx-alignment: center;" text="Tên đối thủ" />
+                            <TableColumn fx:id="matchResultColumn" prefWidth="180.800048828125" style="-fx-text-fill: white; -fx-alignment: center;" text="Kết quả" />
+                            <TableColumn fx:id="timeColumn" prefWidth="357.5999694824219" style="-fx-text-fill: white; -fx-alignment: center;" text="Thời gian thi đấu" />
                         </columns>
                         <effect>
                             <DropShadow color="red" spread="0.1" />
@@ -88,8 +88,8 @@
                   <DropShadow color="red" spread="0.1" />
               </effect>
           </TableView>
-          <Label layoutX="991.0" layoutY="87.0" style="-fx-font-weight: bold;                                            -fx-font-size: 16;                                           -fx-text-fill: #ff0000;" text="Bảng xếp hạng (Top 20)" />
-   <Button fx:id="logoutButton" layoutX="1194.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogout" style="-fx-background-color: #2d0606; -fx-text-fill: #ef4346;" text="Bỏ cuộc">
+          <Label layoutX="952.0" layoutY="93.0" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-text-fill: #ff0000;" text="Danh sách truy nã khẩn cấp" />
+   <Button fx:id="logoutButton" layoutX="1176.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="42.0" prefWidth="92.0" style="-fx-background-color: #2d0606; -fx-text-fill: #ef4346;" text="Bỏ cuộc">
        <effect>
            <DropShadow color="red" spread="0.3" />
        </effect>

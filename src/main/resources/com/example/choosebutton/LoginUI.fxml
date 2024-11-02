@@ -15,7 +15,7 @@
     
     <ImageView fitHeight="600.0" fitWidth="450.0" preserveRatio="false">
         <image>
-            <Image url="@../../../images/test_bg.jpg" />
+            <Image url="@../../../images/login_bg.jpg" />
         </image>
     </ImageView>
     
