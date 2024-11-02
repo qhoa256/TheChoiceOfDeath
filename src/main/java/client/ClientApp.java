@@ -10,7 +10,6 @@ public class ClientApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         try {
-            AudioPlayer.initializeBackgroundMusic();
             Client client = new Client(primaryStage);
             client.showLoginUI();
 
