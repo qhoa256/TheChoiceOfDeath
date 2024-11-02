@@ -3,45 +3,80 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.*?>
+<?import javafx.scene.effect.DropShadow?>
 
 <AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="client.GUI.MainController">
+            fx:controller="client.GUI.MainController"
+            style="-fx-background-color: linear-gradient(to bottom, #1a0f0f, #000000);">
     <padding>
         <Insets top="20" right="20" bottom="20" left="20"/>
     </padding>
-    <TabPane fx:id="mainTabPane">
-        <!-- Tab Màn hình chính -->
-        <Tab text="Màn hình chính">
-            <AnchorPane>
+    <TabPane fx:id="mainTabPane" style="-fx-background-color: transparent;">
+        <Tab text="Màn hình chính" style="-fx-background-color: #2a1f1f; -fx-text-fill: white;">
+            <AnchorPane style="-fx-background-color: transparent;">
                 <VBox spacing="10">
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10"/>
                     </padding>
-                    <!-- Thanh công cụ chứa các nút và trường tìm kiếm -->
                     <HBox spacing="10">
-                        <Button fx:id="filterOnlineButton" text="Lọc Player Online" onAction="#handleFilterOnline"/>
-                        <TextField fx:id="searchField" promptText="Tìm kiếm người chơi..." />
-                        <Button fx:id="searchButton" text="Tìm kiếm" onAction="#handleSearch"/>
+                        <Button fx:id="filterOnlineButton" text="Lọc Player Online" onAction="#handleFilterOnline"
+                                style="-fx-background-color: #800000;
+                                       -fx-background-radius: 20;
+                                       -fx-text-fill: white;
+                                       -fx-font-size: 14px;">
+                            <effect>
+                                <DropShadow color="red" spread="0.3"/>
+                            </effect>
+                        </Button>
+                        <TextField fx:id="searchField" promptText="Tìm kiếm người chơi..."
+                                 style="-fx-background-color: #2a1f1f;
+                                        -fx-text-fill: white;
+                                        -fx-prompt-text-fill: #666666;
+                                        -fx-background-radius: 20;"/>
+                        <Button fx:id="searchButton" text="Tìm kiếm" onAction="#handleSearch"
+                                style="-fx-background-color: #800000;
+                                       -fx-background-radius: 20;
+                                       -fx-text-fill: white;
+                                       -fx-font-size: 14px;">
+                            <effect>
+                                <DropShadow color="red" spread="0.3"/>
+                            </effect>
+                        </Button>
                     </HBox>
 
-                    <!-- Danh sách người chơi -->
                     <HBox spacing="10">
-                        <TableView fx:id="usersTable" prefWidth="400" prefHeight="400">
+                        <TableView fx:id="usersTable" prefWidth="400" prefHeight="400"
+                                 style="-fx-background-color: #2a1f1f;
+                                        -fx-text-fill: white;
+                                        -fx-control-inner-background: #2a1f1f;
+                                        -fx-table-cell-border-color: #800000;">
                             <columns>
-                                <TableColumn fx:id="nameColumn" text="Tên người chơi" />
-                                <TableColumn fx:id="statusColumn" text="Trạng thái" />
-                                <TableColumn fx:id="pointsColumn" text="Điểm" />
+                                <TableColumn fx:id="nameColumn" text="Tên người chơi" style="-fx-text-fill: white;"/>
+                                <TableColumn fx:id="statusColumn" text="Trạng thái" style="-fx-text-fill: white;"/>
+                                <TableColumn fx:id="pointsColumn" text="Điểm" style="-fx-text-fill: white;"/>
                             </columns>
+                            <effect>
+                                <DropShadow color="red" spread="0.1"/>
+                            </effect>
                         </TableView>
 
-                        <!-- Bảng xếp hạng top 20 người chơi -->
                         <VBox spacing="5" prefWidth="200">
-                            <Label text="Bảng xếp hạng (Top 20)" style="-fx-font-weight: bold; -fx-font-size: 16;" />
-                            <TableView fx:id="leaderboardTable" prefWidth="200" prefHeight="400">
+                            <Label text="Bảng xếp hạng (Top 20)" 
+                                   style="-fx-font-weight: bold; 
+                                          -fx-font-size: 16;
+                                          -fx-text-fill: #ff0000;"/>
+                            <TableView fx:id="leaderboardTable" prefWidth="200" prefHeight="400"
+                                     style="-fx-background-color: #2a1f1f;
+                                            -fx-text-fill: white;
+                                            -fx-control-inner-background: #2a1f1f;
+                                            -fx-table-cell-border-color: #800000;">
                                 <columns>
-                                    <TableColumn fx:id="lbNameColumn" text="Tên người chơi" />
-                                    <TableColumn fx:id="lbPointsColumn" text="Điểm" />
+                                    <TableColumn fx:id="lbNameColumn" text="Tên người chơi" style="-fx-text-fill: white;"/>
+                                    <TableColumn fx:id="lbPointsColumn" text="Điểm" style="-fx-text-fill: white;"/>
                                 </columns>
+                                <effect>
+                                    <DropShadow color="red" spread="0.1"/>
+                                </effect>
                             </TableView>
                         </VBox>
                     </HBox>
@@ -49,28 +84,34 @@
             </AnchorPane>
         </Tab>
 
-        <!-- Tab Lịch sử đấu -->
-        <Tab text="Lịch sử đấu">
-            <AnchorPane>
+        <Tab text="Lịch sử đấu" style="-fx-background-color: #2a1f1f; -fx-text-fill: white;">
+            <AnchorPane style="-fx-background-color: transparent;">
                 <VBox spacing="10">
                     <padding>
                         <Insets top="10" right="10" bottom="10" left="10"/>
                     </padding>
-                    <Label text="Lịch sử đấu của bạn" style="-fx-font-weight: bold; -fx-font-size: 16;" />
+                    <Label text="Lịch sử đấu của bạn" 
+                           style="-fx-font-weight: bold;
+                                  -fx-font-size: 16;
+                                  -fx-text-fill: #ff0000;"/>
 
-                    <!-- Danh sách các trận đấu đã qua -->
-                    <TableView fx:id="historyTable" prefWidth="600" prefHeight="400">
+                    <TableView fx:id="historyTable" prefWidth="600" prefHeight="400"
+                             style="-fx-background-color: #2a1f1f;
+                                    -fx-text-fill: white;
+                                    -fx-control-inner-background: #2a1f1f;
+                                    -fx-table-cell-border-color: #800000;">
                         <columns>
-                            <TableColumn fx:id="matchIdColumn" text="ID"/>
-                            <TableColumn fx:id="opponentColumn" text="Tên đối thủ" />
-                            <TableColumn fx:id="matchResultColumn" text="Kết quả" />
-                            <TableColumn fx:id="timeColumn" text="Thời gian thi đấu" />
+                            <TableColumn fx:id="matchIdColumn" text="ID" style="-fx-text-fill: white;"/>
+                            <TableColumn fx:id="opponentColumn" text="Tên đối thủ" style="-fx-text-fill: white;"/>
+                            <TableColumn fx:id="matchResultColumn" text="Kết quả" style="-fx-text-fill: white;"/>
+                            <TableColumn fx:id="timeColumn" text="Thời gian thi đấu" style="-fx-text-fill: white;"/>
                         </columns>
+                        <effect>
+                            <DropShadow color="red" spread="0.1"/>
+                        </effect>
                     </TableView>
                 </VBox>
             </AnchorPane>
         </Tab>
     </TabPane>
-
-
 </AnchorPane>
