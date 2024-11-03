@@ -199,6 +199,22 @@ public class DatabaseManager {
         }
         return matches;
     }
+
+    public User getUserById(int userId) throws SQLException {
+        String query = "SELECT * FROM users WHERE id = ?";
+        PreparedStatement stmt = conn.prepareStatement(query);
+        stmt.setInt(1, userId);
+        ResultSet rs = stmt.executeQuery();
+        if (rs.next()) {
+            return new User(
+                rs.getInt("id"),
+                rs.getString("username"),
+                rs.getInt("score"),
+                rs.getString("status")
+            );
+        }
+        return null;
+    }
 /*
 create TABLE USERS(
 	id INT AUTO_INCREMENT PRIMARY KEY,

@@ -97,7 +97,7 @@ public class ClientHandler implements Runnable {
                 handleChat(message);
                 break;
             case "logout":
-                handleLogout();
+                handleLogout(message);
                 break;
             case "choose":
                 handleChoose(message);
@@ -186,18 +186,22 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    private void handleLogout() throws IOException, SQLException {
-        if (user != null) {
-            dbManager.updateUserStatus(user.getId(), "offline");
-            user.setStatus("offline");
-            server.broadcast(new Message("status_update", user.getUsername() + " đã offline."));
-            if (socket != null && !socket.isClosed()) {
-                sendMessage(new Message("logout_success", "Đăng xuất thành công."));
-            }
-            isRunning = false; // Dừng vòng lặp
-            server.removeClient(this);
-            socket.close();
+    private void handleLogout(Message message) throws SQLException, IOException {
+        int userId = (int) message.getContent();
+        dbManager.updateUserStatus(userId, "offline");
+        
+        // Cập nhật trạng thái cho các client khác
+        User loggedOutUser = dbManager.getUserById(userId);
+        if (loggedOutUser != null) {
+            server.broadcast(new Message("status_update", 
+                loggedOutUser.getUsername() + " đã offline."));
         }
+        
+        // Xóa dữ liệu người dùng nhưng giữ kết nối
+        this.user = null;
+        
+        // Gửi phản hồi thành công
+        sendMessage(new Message("logout_success", null));
     }
 
     private void handleGetUsers() throws IOException, SQLException {

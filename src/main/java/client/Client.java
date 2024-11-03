@@ -243,6 +243,9 @@ public class Client {
                     }
                 });
                 break;
+            case "logout_success":
+                handleLogout();
+                break;
             // Các loại message khác
             // ...
         }
@@ -364,6 +367,20 @@ public class Client {
         if (socket != null && !socket.isClosed()) {
             socket.close();
         }
+    }
+
+    public void handleLogout() {
+        // Xóa dữ liệu người dùng hiện tại
+        this.user = null;
+        
+        // Reset các controller
+        this.mainController = null;
+        this.gameRoomController = null;
+        
+        // Hiển thị giao diện đăng nhập
+        Platform.runLater(() -> {
+            showLoginUI();
+        });
     }
 
     public static void main(String[] args) {

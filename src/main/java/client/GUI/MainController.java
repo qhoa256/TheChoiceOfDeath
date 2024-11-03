@@ -92,11 +92,10 @@ public class MainController {
 
     @FXML
     private void handleLogout() throws IOException {
-        // Gửi yêu cầu đăng xuất
         if (client.getUser() != null) {
             Message logoutMessage = new Message("logout", client.getUser().getId());
             client.sendMessage(logoutMessage);
-            client.showLoginUI();
+            client.handleLogout();
         }
     }
 
@@ -258,7 +257,6 @@ public class MainController {
         ObservableList<Match> detailsList = FXCollections.observableArrayList(details);
         historyTable.setItems(detailsList);
     }
-
 
     private void loadLeaderboard() throws IOException {
         Message request = new Message("get_leaderboard", null);
