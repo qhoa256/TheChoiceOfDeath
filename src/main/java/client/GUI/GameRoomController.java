@@ -98,10 +98,6 @@ public class GameRoomController {
         }
     }
 
-    public String splitID(String id) {
-        return new String("" + id.charAt(6) + id.charAt(8));
-    }
-
     private void startBlinkingEffect(Label label) {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.ZERO, e -> {
@@ -212,11 +208,12 @@ public class GameRoomController {
     private void setPropButton(Button b, int n) {
         Platform.runLater(() -> {
             if (n == 0) {
-                b.setText("Safe");
+                b.setText("ALIVE");
                 b.setStyle("-fx-background-color: rgba(26, 74, 26, 0.8); " + // Semi-transparent dark green
                         "-fx-text-fill: #7DFD79; " + // Light green text
                         "-fx-background-radius: 10; " +
                         "-fx-font-weight: bold; " +
+                        "-fx-font-size: 30px; " +
                         "-fx-effect: dropshadow(gaussian, #7DFD79, 10, 0.5, 0, 0);"); // Green glow effect
             } else {
                 b.setText("DEATH");
@@ -224,6 +221,7 @@ public class GameRoomController {
                         "-fx-text-fill: #FFFFFF; " + // Light red text
                         "-fx-background-radius: 10; " +
                         "-fx-font-weight: bold; " +
+                        "-fx-font-size: 30px; " +
                         "-fx-effect: dropshadow(gaussian, #FF0000, 15, 0.7, 0, 0);"); // Red glow effect
             }
             b.setDisable(true);
@@ -358,7 +356,7 @@ public class GameRoomController {
 
     public void updateChat(String message) {
         Platform.runLater(() -> {
-            chatArea.appendText(message + "\n");
+            chatArea.appendText(message);
         });
     }
 
@@ -372,32 +370,13 @@ public class GameRoomController {
         });
     }
 
-    //    public void endMatch(String result){
-//        Platform.runLater(() -> {
-//            Alert alert = new Alert(AlertType.INFORMATION);
-//            alert.setTitle("Kết Thúc Trận Đấu");
-//            alert.setHeaderText(null);
-//            alert.setContentText(result);
-//            alert.showAndWait().ifPresent(response ->{
-//                if (response == ButtonType.OK && !hasPromptedPlayAgain){
-//                    hasPromptedPlayAgain = true;
-//                    promptPlayAgain();
-//                }
-//            });
-//            try {
-//                client.showMainUI();
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
-//        });
-//    }
     public void timeCountingP1(){
         clicked2 = false;
         if(isEnded){
             return;
         }
-        timeLeft = 5; // Đặt lại thời gian
-        timeCounter.setText("0" + timeLeft);
+        timeLeft = 30; // Đặt lại thời gian
+        timeCounter.setText(timeLeft + ":00");
 
         countdownTimer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             if (isEnded) { // Kiểm tra thêm để dừng khi trận đấu kết thúc
@@ -405,7 +384,7 @@ public class GameRoomController {
                 return;
             }
             timeLeft--;
-            timeCounter.setText("0" + timeLeft);
+            timeCounter.setText(timeLeft + ":00");
             if(clicked1 && timeLeft >= 0){
                 countdownTimer.stop();
             }
@@ -422,8 +401,8 @@ public class GameRoomController {
         if(isEnded){
             return;
         }
-        timeLeft = 5; // Đặt lại thời gian
-        timeCounter.setText("0" + timeLeft);
+        timeLeft = 30; // Đặt lại thời gian
+        timeCounter.setText(timeLeft + ":00");
 
         countdownTimer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             if (isEnded) { // Kiểm tra thêm để dừng khi trận đấu kết thúc
@@ -431,7 +410,7 @@ public class GameRoomController {
                 return;
             }
             timeLeft--;
-            timeCounter.setText("0" + timeLeft);
+            timeCounter.setText(timeLeft + ":00");
             if(clicked2 && timeLeft >= 0){
                 countdownTimer.stop();
             }
@@ -624,5 +603,4 @@ public class GameRoomController {
             player2Label.setText(player2Name);
         });
     }
-
 }

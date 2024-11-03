@@ -16,8 +16,6 @@ public class GameRoom {
     private int currentRound;
     private boolean isPlayer1Dead = false;
     private boolean isPlayer2Dead = false;
-    private int boxPlayer1 = 0;
-    private int boxPlayer2 = 0;
     private Boolean player1WantsRematch = null;
     private Boolean player2WantsRematch = null;
     private int[][] matrixPlayer1 = new int[3][2];
@@ -35,7 +33,7 @@ public class GameRoom {
         this.player1Handler = player1;
         this.player2Handler = player2;
     }
-    //Tạo ma trận 3x2 ngẫu nhiên, mỗi phần tử nhận 1 trong 2 gi trị.
+    //Tạo ma trận 3x2 ngẫu nhiên, mỗi phần tử nhận 1 trong 2 giá trị.
     public void randMatrix(){
         //1 nguy hiem, 0 an toan
         Random random = new Random();
@@ -80,23 +78,46 @@ public class GameRoom {
     private void requestNextMoveP1() {
         try {
             //kiểm tra các điều kiện kết thúc
-            if(isPlayer2Dead && isPlayer1Dead){
-                endMatch();
-                return;
+//            if(isPlayer2Dead && isPlayer1Dead){
+//                endMatch();
+//                return;
+//            }
+//            if(player1Score == 3 && isPlayer2Dead){
+//                endMatch();
+//                return;
+//            }
+//            if(player2Score == 3 && isPlayer1Dead){
+//                endMatch();
+//                return;
+//            }
+//            if(player2Score == 3 && player1Score == 3){
+//                endMatch();
+//                return;
+//            }
+            if(isPlayer1Dead){
+                if(isPlayer2Dead){
+                    endMatch();
+                    return;
+                } else {
+                    if(player2Score == 3){
+                        endMatch();
+                        return;
+                    }
+                }
+            } else {
+                if(isPlayer2Dead){
+                    if(player1Score == 3){
+                        endMatch();
+                        return;
+                    }
+                } else {
+                    if(player1Score == 3 && player2Score == 3){
+                        endMatch();
+                        return;
+                    }
+                }
             }
-            if(player1Score == 3 && isPlayer2Dead){
-                endMatch();
-                return;
-            }
-            if(player2Score == 3 && isPlayer1Dead){
-                endMatch();
-                return;
-            }
-            if(player2Score == 3 && player1Score == 3){
-                endMatch();
-                return;
-            }
-            //Lượt của người thứ 1 thì người thứ 2 khng được bấm gì
+            //Lượt của người thứ 1 thì người thứ 2 không được bấm gì
             player1Handler.sendMessage(new Message("your_turn", "P1"));
             player2Handler.sendMessage(new Message("disable_all", null));
         } catch (Exception e) {
@@ -106,21 +127,44 @@ public class GameRoom {
     //Lượt người thứ 2, tương tự
     private void requestNextMoveP2() {
         try {
-            if(isPlayer2Dead && isPlayer1Dead){
-                endMatch();
-                return;
-            }
-            if(player1Score == 3 && isPlayer2Dead){
-                endMatch();
-                return;
-            }
-            if(player2Score == 3 && isPlayer1Dead){
-                endMatch();
-                return;
-            }
-            if(player2Score == 3 && player1Score == 3){
-                endMatch();
-                return;
+//            if(isPlayer2Dead && isPlayer1Dead){
+//                endMatch();
+//                return;
+//            }
+//            if(player1Score == 3 && isPlayer2Dead){
+//                endMatch();
+//                return;
+//            }
+//            if(player2Score == 3 && isPlayer1Dead){
+//                endMatch();
+//                return;
+//            }
+//            if(player2Score == 3 && player1Score == 3){
+//                endMatch();
+//                return;
+//            }
+            if(isPlayer1Dead){
+                if(isPlayer2Dead){
+                    endMatch();
+                    return;
+                } else {
+                    if(player2Score == 3){
+                        endMatch();
+                        return;
+                    }
+                }
+            } else {
+                if(isPlayer2Dead){
+                    if(player1Score == 3){
+                        endMatch();
+                        return;
+                    }
+                } else {
+                    if(player1Score == 3 && player2Score == 3){
+                        endMatch();
+                        return;
+                    }
+                }
             }
             player2Handler.sendMessage(new Message("your_turn", "P2"));
             player1Handler.sendMessage(new Message("disable_all", null));
@@ -181,10 +225,6 @@ public class GameRoom {
             }
         }
         //kiểm tra điều kiện kết thúc
-//        if ((isPlayer1Dead && isPlayer2Dead )|| player1Score == 3 || player2Score == 3) {
-//            determineWinner();
-//        }
-//        else{
         //Nếu người 2 vừa đi và người 1 chưa chết thì đến lượt người 1
         if (turn1 && !isPlayer1Dead){
             turn1 = false;
@@ -209,11 +249,10 @@ public class GameRoom {
             turn2 = false;
             requestNextMoveP1();
         }
-        // }
     }
     //Tổng kết kết quả
     private void determineWinner() throws SQLException, IOException {
-        //winner dùng để lưu id nguwfoi thắng. Nếu hoà thì id sẽ  = 0 và import vào trong csdl giá trị là null
+        //winner dùng để lưu id người thắng. Nếu hoà thì id sẽ = 0 và import vào trong csdl giá trị là null
         int winnerId = 0;
         String resultMessage = "";
         System.out.println(player1Score + " " + player2Score);
