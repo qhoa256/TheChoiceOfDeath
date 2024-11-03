@@ -11,13 +11,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1248.0" style="-fx-background-color: linear-gradient(to bottom, #1a0f0f, #000000);" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.GUI.GameRoomController">
 
     <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1250.0" spacing="80.0">
         <!-- Left Player Panel -->
         <VBox alignment="CENTER" prefHeight="720.0" prefWidth="336.0" spacing="15">
-            <Label fx:id="player1Label" alignment="CENTER" contentDisplay="CENTER" prefWidth="200" style="-fx-background-color: #800000;                           -fx-padding: 10px;                           -fx-text-fill: white;                           -fx-font-size: 18px;                           -fx-font-weight: bold;                           -fx-background-radius: 10;                           -fx-border-width: 0;" text="Player 1">
+            <Label fx:id="player1Label" alignment="CENTER" contentDisplay="CENTER" prefWidth="200" style="-fx-background-color: #4c1a1b; -fx-padding: 10px; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 10; -fx-border-width: 0;" text="Player 1">
                 <effect>
                     <DropShadow color="red" spread="0.3" />
                 </effect>
@@ -26,17 +27,17 @@
             <Label fx:id="player1ScoreLabel" alignment="CENTER" contentDisplay="CENTER" prefWidth="120" style="-fx-text-fill: #ff0000; -fx-font-size: 20px; -fx-font-weight: bold;" text="Score: 0" />
 
             <GridPane alignment="CENTER" hgap="10" prefHeight="378.0" prefWidth="336.0" vgap="10">
-                <Button fx:id="button1_1" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f;                                -fx-text-fill: white;                                -fx-background-radius: 10;                                -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Button fx:id="button1_1" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0">
                     <effect>
                         <DropShadow color="red" spread="0.1" />
                     </effect>
                 </Button>
                 <!-- Repeat for buttons 1_2 through 1_6 with same style -->
-                <Button fx:id="button1_2" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
-                <Button fx:id="button1_3" alignment="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
-                <Button fx:id="button1_4" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
-                <Button fx:id="button1_5" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="2"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
-                <Button fx:id="button1_6" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
+                <Button fx:id="button1_2" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
+                <Button fx:id="button1_3" alignment="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
+                <Button fx:id="button1_4" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
+                <Button fx:id="button1_5" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="2"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
+                <Button fx:id="button1_6" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
 
                 <columnConstraints>
                     <ColumnConstraints />
@@ -52,7 +53,7 @@
 
         <!-- Right Player Panel -->
         <VBox alignment="CENTER" prefHeight="652.0" prefWidth="270.0" spacing="15">
-            <Label fx:id="player2Label" alignment="CENTER" contentDisplay="CENTER" prefWidth="200" style="-fx-background-color: #800000;                           -fx-padding: 10px;                           -fx-text-fill: white;                           -fx-font-size: 18px;                           -fx-font-weight: bold;                           -fx-background-radius: 10;" text="Player 2">
+            <Label fx:id="player2Label" alignment="CENTER" contentDisplay="CENTER" prefWidth="200" style="-fx-background-color: #4c1a1b; -fx-padding: 10px; -fx-text-fill: white; -fx-font-size: 18px; -fx-font-weight: bold; -fx-background-radius: 10;" text="Player 2">
                 <effect>
                     <DropShadow color="red" spread="0.3" />
                 </effect>
@@ -62,12 +63,12 @@
 
             <GridPane alignment="CENTER" hgap="10" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="383.0" prefWidth="302.0" vgap="10">
                 <!-- Same button style pattern for player 2 buttons -->
-                <Button fx:id="button2_1" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
-                <Button fx:id="button2_2" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
-                <Button fx:id="button2_3" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
-                <Button fx:id="button2_4" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
-                <Button fx:id="button2_5" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="2"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
-                <Button fx:id="button2_6" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
+                <Button fx:id="button2_1" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="0"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
+                <Button fx:id="button2_2" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="0"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
+                <Button fx:id="button2_3" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="1"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
+                <Button fx:id="button2_4" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
+                <Button fx:id="button2_5" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="0" GridPane.rowIndex="2"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
+                <Button fx:id="button2_6" alignment="CENTER" contentDisplay="CENTER" onAction="#handleChoosingBox" prefHeight="150.0" prefWidth="150.0" style="-fx-background-color: #8f2323; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2"><effect><DropShadow color="red" spread="0.1" /></effect></Button>
 
                 <columnConstraints>
                     <ColumnConstraints />
@@ -89,21 +90,24 @@
 
             <Label fx:id="timeCounter" style="-fx-text-fill: #ff0000;                           -fx-font-size: 18px;                           -fx-font-weight: bold;" text="" />
 
-            <TextArea fx:id="chatArea" editable="false" prefHeight="250" prefWidth="366.0" style="-fx-control-inner-background: #1a0f0f;                              -fx-text-fill: white;                              -fx-background-radius: 10;" />
+            <TextArea fx:id="chatArea" editable="false" prefHeight="250" prefWidth="366.0" style="-fx-control-inner-background: #ffc4c4; -fx-text-fill: black; -fx-background-radius: 10;" />
 
             <HBox spacing="10">
-                <TextField fx:id="chatInput" prefHeight="26.0" prefWidth="350.0" promptText="Phán quyết..." style="-fx-background-color: #1a0f0f;                                  -fx-text-fill: white;                                  -fx-prompt-text-fill: #666666;                                  -fx-background-radius: 10;" />
+                <TextField fx:id="chatInput" prefHeight="26.0" prefWidth="350.0" promptText="Phán quyết..." style="-fx-background-color: #ffc4c4; -fx-text-fill: black; -fx-prompt-text-fill: #666666; -fx-background-radius: 10;" />
 
-                <Button fx:id="sendButton" onAction="#handleSendChat" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #800000;                                -fx-text-fill: white;                                -fx-background-radius: 10;                                -fx-font-weight: bold;" text="Giết">
+                <Button fx:id="sendButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleSendChat" prefHeight="26.0" prefWidth="82.0" style="-fx-background-color: #b70d10; -fx-text-fill: white; -fx-background-radius: 5; -fx-font-weight: bold;" text="Giết">
                     <effect>
-                        <DropShadow color="red" spread="0.2" />
+                        <DropShadow spread="0.7">
+                     <color>
+                        <Color red="0.501960813999176" />
+                     </color></DropShadow>
                     </effect>
                 </Button>
             </HBox>
 
-            <Button fx:id="quitButton" onAction="#handleQuitGame" prefHeight="31.0" prefWidth="150" style="-fx-background-color: #800000;                            -fx-text-fill: white;                            -fx-background-radius: 10;                            -fx-font-weight: bold;                            -fx-font-size: 14px;" text="Đầu hàng">
+            <Button fx:id="quitButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleQuitGame" prefHeight="31.0" prefWidth="150" style="-fx-background-color: #b70d10; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold; -fx-font-size: 14px;" text="Đầu hàng">
                 <effect>
-                    <DropShadow color="red" spread="0.3" />
+                    <DropShadow spread="0.8" />
                 </effect>
             </Button>
         </VBox>

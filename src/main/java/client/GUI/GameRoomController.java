@@ -209,12 +209,12 @@ public class GameRoomController {
         Platform.runLater(() -> {
             if (n == 0) {
                 b.setText("ALIVE");
-                b.setStyle("-fx-background-color: rgba(26, 74, 26, 0.8); " + // Semi-transparent dark green
-                        "-fx-text-fill: #7DFD79; " + // Light green text
+                b.setStyle("-fx-background-color: #f47272; " + // Semi-transparent dark green
+                        "-fx-text-fill: #ffffff; " + // Light green text
                         "-fx-background-radius: 10; " +
                         "-fx-font-weight: bold; " +
                         "-fx-font-size: 30px; " +
-                        "-fx-effect: dropshadow(gaussian, #7DFD79, 10, 0.5, 0, 0);"); // Green glow effect
+                        "-fx-effect: dropshadow(gaussian, #ffeded, 10, 0.5, 0, 0);"); // Green glow effect
             } else {
                 b.setText("DEATH");
                 b.setStyle("-fx-background-color: #000000; " + // Semi-transparent dark red
@@ -222,7 +222,7 @@ public class GameRoomController {
                         "-fx-background-radius: 10; " +
                         "-fx-font-weight: bold; " +
                         "-fx-font-size: 30px; " +
-                        "-fx-effect: dropshadow(gaussian, #FF0000, 15, 0.7, 0, 0);"); // Red glow effect
+                        "-fx-effect: dropshadow(gaussian, #FFFFFF, 15, 0.7, 0, 0);"); // Red glow effect
             }
             b.setDisable(true);
         });

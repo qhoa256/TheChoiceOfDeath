@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="629283ef-14ae-4a00-8c65-632694a3382d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/Client.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/client/GUI/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/GUI/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/ClientHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/ClientHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/server/DatabaseManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/server/DatabaseManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/client/GUI/GameRoomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/client/GUI/GameRoomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/choosebutton/GameRoomUI.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/choosebutton/GameRoomUI.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +125,7 @@
       <updated>1730345366312</updated>
       <workItem from="1730508721679" duration="8082000" />
       <workItem from="1730610136566" duration="2713000" />
-      <workItem from="1730614944269" duration="3062000" />
+      <workItem from="1730614944269" duration="4867000" />
     </task>
     <servers />
   </component>
