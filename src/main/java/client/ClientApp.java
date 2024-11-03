@@ -28,10 +28,10 @@ public class ClientApp extends Application {
             primaryStage.setOnCloseRequest(event -> {
                 try {
                     if (client.getUser() != null) {
-                        // Gửi yêu cầu đăng xuất trước khi đóng
                         Message logoutMessage = new Message("logout", client.getUser().getId());
                         client.sendMessage(logoutMessage);
                     }
+                    MediaManager.stopMusic(); // Dừng nhạc
                     client.closeConnection();
                 } catch (IOException e) {
                     e.printStackTrace();

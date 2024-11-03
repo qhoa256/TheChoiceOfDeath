@@ -1,6 +1,7 @@
 package client.GUI;
 
 import client.Client;
+import client.MediaManager;
 import common.Message;
 import java.io.IOException;
 import javafx.application.Platform;
@@ -29,14 +30,13 @@ public class LoginController {
             errorLabel.setText("Vui lòng nhập đầy đủ thông tin.");
             return;
         }
-        String[] credentials = {username, password};
+        String[] credentials = { username, password };
         Message loginMessage = new Message("login", credentials);
         client.sendMessage(loginMessage);
+        MediaManager.playBackgroundMusic(); // Bắt đầu phát nhạc
     }
 
-    public void showError(String error) {
-        Platform.runLater(() -> {
-            errorLabel.setText(error);
-        });
+    public void showError(String errorMessage) {
+        errorLabel.setText(errorMessage);
     }
 }
