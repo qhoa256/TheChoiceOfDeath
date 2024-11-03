@@ -18,19 +18,19 @@
         <Insets bottom="20" left="20" right="20" top="20" />
     </padding>
     <TabPane fx:id="mainTabPane" prefHeight="676.0" prefWidth="862.0" style="-fx-background-color: transparent;">
-        <Tab style="-fx-background-color: #e98789; -fx-text-fill: white;" text="Màn hình chính">
+        <Tab style="-fx-background-color: #e98789; -fx-text-fill: white;" text="Sảnh danh vọng">
             <AnchorPane style="-fx-background-color: transparent;">
-                <VBox alignment="CENTER" prefHeight="647.0" prefWidth="626.0" spacing="10">
+                <VBox alignment="CENTER" layoutY="33.0" prefHeight="614.0" prefWidth="897.0" spacing="10">
                     <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                     </padding>
-                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="876.0" spacing="10">
+                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="827.0" spacing="10">
                         <Button fx:id="filterOnlineButton" alignment="CENTER" contentDisplay="CENTER" onAction="#handleFilterOnline" prefHeight="30.0" prefWidth="124.0" style="-fx-background-color: #fd4045; -fx-background-radius: 5; -fx-text-fill: white; -fx-font-size: 16px;" text="Ai còn sống">
                             <effect>
                                 <DropShadow color="red" spread="0.3" />
                             </effect>
                         </Button>
-                        <TextField fx:id="searchField" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="518.0" promptText="Tìm kiếm người chơi..." style="-fx-background-color: #f7cccd; -fx-text-fill: black; -fx-prompt-text-fill: black; -fx-background-radius: 5;" />
+                        <TextField fx:id="searchField" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="28.0" prefWidth="557.0" promptText="Những kẻ khát máu..." style="-fx-background-color: #f7cccd; -fx-text-fill: black; -fx-prompt-text-fill: black; -fx-background-radius: 5;" />
                         <Button fx:id="searchButton" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#handleSearch" prefHeight="30.0" prefWidth="88.0" style="-fx-background-color: #2d0606; -fx-background-radius: 5; -fx-text-fill: #ef4346; -fx-font-size: 16px;" text="Tìm kiếm">
                             <effect>
                                 <DropShadow color="red" spread="0.3" />
@@ -38,15 +38,15 @@
                         </Button>
                     </HBox>
 
-                    <HBox alignment="CENTER" spacing="10">
+                    <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="70.0" spacing="10">
 
                         <VBox prefWidth="200" spacing="5" />
                     </HBox>
-                     <TableView fx:id="usersTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="486.0" prefWidth="807.0" style="-fx-background-color: #2a1f1f;                                         -fx-text-fill: white;                                         -fx-control-inner-background: #2a1f1f;                                         -fx-table-cell-border-color: #800000;">
+                     <TableView fx:id="usersTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="807.0" style="-fx-background-color: #2a1f1f;                                         -fx-text-fill: white;                                         -fx-control-inner-background: #2a1f1f;                                         -fx-table-cell-border-color: #800000;">
                          <columns>
-                             <TableColumn fx:id="nameColumn" prefWidth="160.00000321865082" style="-fx-text-fill: white; -fx-alignment: center;" text="Tên người chơi" />
-                             <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="439.1999969482422" style="-fx-text-fill: white; -fx-alignment: center;" text="Trạng thái" />
-                             <TableColumn fx:id="pointsColumn" prefWidth="207.199951171875" style="-fx-text-fill: white; -fx-alignment: center;" text="Điểm" />
+                             <TableColumn fx:id="nameColumn" prefWidth="160.00000321865082" style="-fx-text-fill: white; -fx-alignment: center;" text="Kẻ xâm nhập" />
+                             <TableColumn fx:id="statusColumn" minWidth="0.0" prefWidth="439.1999969482422" style="-fx-text-fill: white; -fx-alignment: center;" text="Tình trạng" />
+                             <TableColumn fx:id="pointsColumn" prefWidth="207.199951171875" style="-fx-text-fill: white; -fx-alignment: center;" text="Điểm ác quỷ" />
                          </columns>
                          <effect>
                              <DropShadow color="red" spread="0.1" />
@@ -56,20 +56,20 @@
             </AnchorPane>
         </Tab>
 
-        <Tab style="-fx-background-color: #ff4545; -fx-text-fill: white;" text="Lịch sử đấu">
+        <Tab style="-fx-background-color: #ff4545; -fx-text-fill: white;" text="Chiến trận">
             <AnchorPane style="-fx-background-color: transparent;">
-                <VBox alignment="CENTER" layoutX="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="656.0" prefWidth="822.0" spacing="10">
+                <VBox alignment="BOTTOM_CENTER" layoutX="43.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="642.0" prefWidth="822.0" spacing="10">
                     <padding>
                         <Insets bottom="10" left="10" right="10" top="10" />
                     </padding>
-                    <Label style="-fx-font-weight: bold; -fx-font-size: 20; -fx-text-fill: #ff0000;" text="Lịch sử chiến trận" />
+                    <Label style="-fx-font-weight: bold; -fx-font-size: 25; -fx-text-fill: #ff0000;" text="Lịch sử chiến trận" />
 
-                    <TableView fx:id="historyTable" prefHeight="486.0" prefWidth="807.0" style="-fx-background-color: #2a1f1f;                                     -fx-text-fill: white;                                     -fx-control-inner-background: #2a1f1f;                                     -fx-table-cell-border-color: #800000;">
+                    <TableView fx:id="historyTable" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="807.0" style="-fx-background-color: #2a1f1f;                                     -fx-text-fill: white;                                     -fx-control-inner-background: #2a1f1f;                                     -fx-table-cell-border-color: #800000;">
                         <columns>
                             <TableColumn fx:id="matchIdColumn" prefWidth="67.20001065731049" style="-fx-text-fill: white; -fx-alignment: center;" text="ID" />
-                            <TableColumn fx:id="opponentColumn" prefWidth="193.5999984741211" style="-fx-text-fill: white; -fx-alignment: center;" text="Tên đối thủ" />
-                            <TableColumn fx:id="matchResultColumn" prefWidth="180.800048828125" style="-fx-text-fill: white; -fx-alignment: center;" text="Kết quả" />
-                            <TableColumn fx:id="timeColumn" prefWidth="357.5999694824219" style="-fx-text-fill: white; -fx-alignment: center;" text="Thời gian thi đấu" />
+                            <TableColumn fx:id="opponentColumn" prefWidth="193.5999984741211" style="-fx-text-fill: white; -fx-alignment: center;" text="Kẻ hủy diệt" />
+                            <TableColumn fx:id="matchResultColumn" prefWidth="191.2000732421875" style="-fx-text-fill: white; -fx-alignment: center;" text="Chiến bại" />
+                            <TableColumn fx:id="timeColumn" prefWidth="347.99993896484375" style="-fx-text-fill: white; -fx-alignment: center;" text="Thời gian chiến trận" />
                         </columns>
                         <effect>
                             <DropShadow color="red" spread="0.1" />
@@ -79,17 +79,17 @@
             </AnchorPane>
         </Tab>
     </TabPane>
-          <TableView fx:id="leaderboardTable" layoutX="899.0" layoutY="135.0" prefHeight="486.0" prefWidth="346.0" style="-fx-background-color: #2a1f1f;                                             -fx-text-fill: white;                                             -fx-control-inner-background: #2a1f1f;                                             -fx-table-cell-border-color: #800000;">
+          <TableView fx:id="leaderboardTable" layoutX="883.0" layoutY="143.0" prefHeight="517.0" prefWidth="346.0" style="-fx-background-color: #2a1f1f;                                             -fx-text-fill: white;                                             -fx-control-inner-background: #2a1f1f;                                             -fx-table-cell-border-color: #800000;">
               <columns>
-                  <TableColumn fx:id="lbNameColumn" prefWidth="181.5999755859375" style="-fx-text-fill: white; -fx-alignment: center;" text="Tên người chơi" />
-                  <TableColumn fx:id="lbPointsColumn" prefWidth="164.79998779296875" style="-fx-text-fill: white; -fx-alignment: center;" text="Điểm" />
+                  <TableColumn fx:id="lbNameColumn" prefWidth="181.5999755859375" style="-fx-text-fill: white; -fx-alignment: center;" text="Tội phạm" />
+                  <TableColumn fx:id="lbPointsColumn" prefWidth="164.79998779296875" style="-fx-text-fill: white; -fx-alignment: center;" text="Điểm khát máu" />
               </columns>
               <effect>
                   <DropShadow color="red" spread="0.1" />
               </effect>
           </TableView>
-          <Label layoutX="952.0" layoutY="93.0" style="-fx-font-weight: bold; -fx-font-size: 20; -fx-text-fill: #ff0000;" text="Danh sách truy nã khẩn cấp" />
-   <Button fx:id="logoutButton" layoutX="1176.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="42.0" prefWidth="92.0" style="-fx-background-color: #2d0606; -fx-text-fill: #ef4346;" text="Bỏ cuộc">
+          <Label layoutX="898.0" layoutY="93.0" style="-fx-font-weight: bold; -fx-font-size: 25; -fx-text-fill: #ff0000;" text="Danh sách truy nã khẩn cấp" />
+   <Button fx:id="logoutButton" layoutX="1176.0" layoutY="14.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="42.0" prefWidth="92.0" style="-fx-background-color: #800000; -fx-text-fill: #FABC3F;" text="Bỏ cuộc">
        <effect>
            <DropShadow color="red" spread="0.3" />
        </effect>
