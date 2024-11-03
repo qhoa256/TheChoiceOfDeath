@@ -63,10 +63,20 @@ public class GameRoomController {
     private Button button2_5;
     @FXML
     private Button button2_6;
+    @FXML
+    private Label timeCounter;
     private Client client;
 
     private int scoreP1 = 0;
     private int scoreP2 = 0;
+
+    private boolean hasPromptedPlayAgain = false;
+
+    private Timeline countdownTimer;
+    private int timeLeft;
+    private boolean clicked1 = false;
+    private boolean clicked2 = false;
+    private boolean isEnded = false;
 
     public void setClient(Client client) {
         this.client = client;
@@ -132,6 +142,7 @@ public class GameRoomController {
 
     public void handleYourTurn(String p) {
         Platform.runLater(() -> {
+            isEnded = false;
             if (p.equals("P1")) {
                 startBlinkingEffect(player1Label);
                 stopBlinkingEffect(player2Label);
@@ -147,6 +158,7 @@ public class GameRoomController {
                 button2_4.setDisable(true);
                 button2_5.setDisable(true);
                 button2_6.setDisable(true);
+                timeCountingP1();
             } else {
                 startBlinkingEffect(player2Label);
                 stopBlinkingEffect(player1Label);
@@ -162,6 +174,7 @@ public class GameRoomController {
                 button1_4.setDisable(true);
                 button1_5.setDisable(true);
                 button1_6.setDisable(true);
+                timeCountingP2();
             }
         });
     }
@@ -185,6 +198,12 @@ public class GameRoomController {
     private void handleChoosingBox(javafx.event.ActionEvent event) throws IOException {
         Button clickedButton = (Button) event.getSource();
         String buttonId = clickedButton.getId();
+        if (buttonId.charAt(6) == '1'){
+            clicked1 = true;
+        }
+        else{
+            clicked2 = true;
+        }
         System.out.println(buttonId);
         Message choosingBoxMessage = new Message("choose", buttonId);
         client.sendMessage(choosingBoxMessage);
@@ -201,8 +220,8 @@ public class GameRoomController {
                         "-fx-effect: dropshadow(gaussian, #7DFD79, 10, 0.5, 0, 0);"); // Green glow effect
             } else {
                 b.setText("DEATH");
-                b.setStyle("-fx-background-color: rgba(74, 26, 26, 0.8); " + // Semi-transparent dark red
-                        "-fx-text-fill: #FF7C7C; " + // Light red text
+                b.setStyle("-fx-background-color: #000000; " + // Semi-transparent dark red
+                        "-fx-text-fill: #FFFFFF; " + // Light red text
                         "-fx-background-radius: 10; " +
                         "-fx-font-weight: bold; " +
                         "-fx-effect: dropshadow(gaussian, #FF0000, 15, 0.7, 0, 0);"); // Red glow effect
@@ -353,28 +372,196 @@ public class GameRoomController {
         });
     }
 
+    //    public void endMatch(String result){
+//        Platform.runLater(() -> {
+//            Alert alert = new Alert(AlertType.INFORMATION);
+//            alert.setTitle("Kết Thúc Trận Đấu");
+//            alert.setHeaderText(null);
+//            alert.setContentText(result);
+//            alert.showAndWait().ifPresent(response ->{
+//                if (response == ButtonType.OK && !hasPromptedPlayAgain){
+//                    hasPromptedPlayAgain = true;
+//                    promptPlayAgain();
+//                }
+//            });
+//            try {
+//                client.showMainUI();
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+//        });
+//    }
+    public void timeCountingP1(){
+        clicked2 = false;
+        if(isEnded){
+            return;
+        }
+        timeLeft = 5; // Đặt lại thời gian
+        timeCounter.setText("0" + timeLeft);
+
+        countdownTimer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            if (isEnded) { // Kiểm tra thêm để dừng khi trận đấu kết thúc
+                countdownTimer.stop();
+                return;
+            }
+            timeLeft--;
+            timeCounter.setText("0" + timeLeft);
+            if(clicked1 && timeLeft >= 0){
+                countdownTimer.stop();
+            }
+            if (timeLeft < 0) {
+                endTurn();
+                return;
+            }
+        }));
+        countdownTimer.setCycleCount(Timeline.INDEFINITE);
+        countdownTimer.play();
+    }
+    public void timeCountingP2(){
+        clicked1 = false;
+        if(isEnded){
+            return;
+        }
+        timeLeft = 5; // Đặt lại thời gian
+        timeCounter.setText("0" + timeLeft);
+
+        countdownTimer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            if (isEnded) { // Kiểm tra thêm để dừng khi trận đấu kết thúc
+                countdownTimer.stop();
+                return;
+            }
+            timeLeft--;
+            timeCounter.setText("0" + timeLeft);
+            if(clicked2 && timeLeft >= 0){
+                countdownTimer.stop();
+            }
+            if (timeLeft < 0) {
+                endTurn();
+                return;
+            }
+        }));
+        countdownTimer.setCycleCount(Timeline.INDEFINITE);
+        countdownTimer.play();
+    }
+    public void endTurn() {
+        countdownTimer.stop(); // Dừng bộ đếm
+        // Gửi thông báo đến server để xử lý tình huống thua cuộc
+        Message lossMessage = new Message("player_time_out", "Bạn đã thua vì hết thời gian.");
+        try {
+            client.sendMessage(lossMessage);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public void endMatch(String result) {
+        if (countdownTimer != null) {
+            countdownTimer.stop(); // Đảm bảo dừng mọi bộ đếm khi trận đấu kết thúc
+        }
+        isEnded = true;
         Platform.runLater(() -> {
             Alert alert = new Alert(AlertType.INFORMATION);
+
             alert.setTitle("Kết Thúc Trận Đấu");
-            alert.setHeaderText(null);
-            alert.setContentText(result);
-            alert.showAndWait();
-            try {
-                client.showMainUI();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            alert.setHeaderText(result);
+            ButtonType okButton = new ButtonType("Hư vô");
+            alert.getButtonTypes().clear();
+
+            // Thêm label để hiển thị thời gian còn lại
+            Label timerLabel = new Label("Ta cần dọn dẹp bọn thua cuộc trong 3 giây");
+            alert.getDialogPane().setContent(timerLabel);
+
+            // Bắt đầu bộ đếm ngược 3 giây
+            Timeline countdownTimer2 = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                int timeLeft = Integer.parseInt(timerLabel.getText().replaceAll("[^0-9]", "")) - 1;
+                timerLabel.setText("Ta cần dọn dẹp bọn thua cuộc trong " + timeLeft + " giây");
+                if (timeLeft <= 0) {
+                    alert.getButtonTypes().setAll(okButton);
+                    alert.close(); // Đóng thông báo
+                    promptPlayAgain(); // Gọi hàm yêu cầu chơi lại
+                }
+            }));
+            countdownTimer2.setCycleCount(3); // Đếm 5 giây
+            countdownTimer2.play(); // Bắt đầu đếm ngược
+
+            alert.show(); // Hiển thị thông báo
+
+
+            // Chỉ gọi hàm yêu cầu chơi lại khi đếm ngược kết thúc
+            alert.setOnCloseRequest(event -> {
+                if (timerLabel.getText().contains("0 giây")) {
+                    alert.getButtonTypes().clear();
+                    alert.resultProperty().addListener((obs, oldValue, newValue) -> {
+                        if (newValue == okButton) {
+                            countdownTimer2.stop(); // Dừng bộ đếm khi nhấn OK
+                            alert.close(); // Đóng thông báo
+                        }
+                    });// Thêm nút OK // Cho phép đóng thông báo nếu là OK sau đếm ngược
+                } else {
+                    event.consume(); // Ngăn chặn đóng thông báo nếu chưa hết thời gian
+                }
+            });
+        });
+    }
+    public void endMatchLeft(String result) {
+        if (countdownTimer != null) {
+            countdownTimer.stop(); // Đảm bảo dừng mọi bộ đếm khi trận đấu kết thúc
+        }
+        isEnded = true;
+        Platform.runLater(() -> {
+            Alert alert = new Alert(AlertType.INFORMATION);
+
+            alert.setTitle("Kết Thúc Trận Đấu");
+            alert.setHeaderText(result);
+            ButtonType okButton = new ButtonType("Hư vô");
+            alert.getButtonTypes().clear();
+
+            // Thêm label để hiển thị thời gian còn lại
+            Label timerLabel = new Label("Ta cần dọn dẹp bọn thua cuộc trong 3 giây");
+            alert.getDialogPane().setContent(timerLabel);
+
+            // Bắt đầu bộ đếm ngược 3 giây
+            Timeline countdownTimer2 = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+                int timeLeft = Integer.parseInt(timerLabel.getText().replaceAll("[^0-9]", "")) - 1;
+                timerLabel.setText("Ta cần dọn dẹp bọn thua cuộc trong " + timeLeft + " giây");
+                if (timeLeft <= 0) {
+                    alert.getButtonTypes().setAll(okButton);
+                    alert.close(); // Đóng thông báo
+                    client.showMainUI(); // Gọi hàm yêu cầu chơi lại
+                }
+            }));
+            countdownTimer2.setCycleCount(3); // Đếm 5 giây
+            countdownTimer2.play(); // Bắt đầu đếm ngược
+
+            alert.show(); // Hiển thị thông báo
+
+            alert.setOnCloseRequest(event -> {
+                if (timerLabel.getText().contains("0 giây")) {
+                    alert.getButtonTypes().clear();
+                    alert.resultProperty().addListener((obs, oldValue, newValue) -> {
+                        if (newValue == okButton) {
+                            countdownTimer2.stop(); // Dừng bộ đếm khi nhấn OK
+                            alert.close(); // Đóng thông báo
+                        }
+                    });// Thêm nút OK // Cho phép đóng thông báo nếu là OK sau đếm ngược
+                } else {
+                    event.consume(); // Ngăn chặn đóng thông báo nếu chưa hết thời gian
+                }
+            });
         });
     }
 
     // Loi: ca 2 cung choi lai thi chi 1 nguoi co the choi lai
     public void promptPlayAgain() {
+
+        if(hasPromptedPlayAgain){
+            return;
+        }
+        hasPromptedPlayAgain = true;
         Platform.runLater(() -> {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Chơi Lại");
             alert.setHeaderText(null);
-            alert.setContentText("Bạn có muốn chơi lại không?");
+            alert.setContentText("Ngươi muốn chơi lại không?");
             ButtonType yesButton = new ButtonType("Có", ButtonBar.ButtonData.YES);
             ButtonType noButton = new ButtonType("Không", ButtonBar.ButtonData.NO);
             alert.getButtonTypes().setAll(yesButton, noButton);
@@ -383,12 +570,14 @@ public class GameRoomController {
             if (result.isPresent()) {
                 boolean playAgain = result.get() == yesButton;
                 Message playAgainResponse = new Message("play_again_response", playAgain);
+                System.out.println(client.getUser().getUsername() + " sent play again!");
                 try {
                     client.sendMessage(playAgainResponse);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
+            hasPromptedPlayAgain = false;
         });
     }
 

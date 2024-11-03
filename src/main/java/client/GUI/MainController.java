@@ -22,14 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.sql.Timestamp;
 
 public class MainController {
-    @FXML
-    private Button searchButton;
-    @FXML
-    private TabPane mainTabPane;
-    @FXML
-    private Button filterOnlineButton;
-    @FXML
-    private Button logoutButton;
+
     @FXML
     private TableColumn<Match, String> matchTimeColumn;
 
@@ -163,8 +156,8 @@ public class MainController {
     public void showMatchRequest(int requesterId) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Yêu Cầu Trận Đấu");
-        alert.setHeaderText("Bạn nhận được yêu cầu trận đấu từ người chơi ID: " + requesterId);
-        alert.setContentText("Bạn có muốn đồng ý?");
+        alert.setHeaderText("Ngươi đã nhận được yêu cầu từ kẻ có ID là " + requesterId);
+        alert.setContentText("Ngươi muốn tham gia không ?");
 
         alert.showAndWait().ifPresent(response -> {
             boolean accepted = response == ButtonType.OK;

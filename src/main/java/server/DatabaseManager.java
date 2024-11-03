@@ -86,8 +86,14 @@ public class DatabaseManager {
     public void updateMatchWinner(int matchId, int winnerId) throws SQLException {
         String query = "UPDATE matches SET winner_id = ? WHERE id = ?";
         PreparedStatement stmt = conn.prepareStatement(query);
-        stmt.setInt(1, winnerId);
-        stmt.setInt(2, matchId);
+        if (winnerId == 0){
+            stmt.setInt(1, Types.INTEGER);
+            stmt.setInt(2, matchId);
+        }
+        else{
+            stmt.setInt(1, winnerId);
+            stmt.setInt(2, matchId);
+        }
         stmt.executeUpdate();
     }
 

@@ -5,16 +5,16 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.effect.DropShadow?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.12" 
-            xmlns:fx="http://javafx.com/fxml/1" 
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="client.GUI.GameRoomController"
             style="-fx-background-color: linear-gradient(to bottom, #1a0f0f, #000000);">
-            
+
     <HBox alignment="CENTER" prefHeight="600" prefWidth="1000" spacing="30">
         <!-- Left Player Panel -->
         <VBox alignment="CENTER" spacing="15">
-            <Label fx:id="player1Label" 
-                   prefWidth="200" 
+            <Label fx:id="player1Label"
+                   prefWidth="200"
                    style="-fx-background-color: #800000;
                           -fx-padding: 10px;
                           -fx-text-fill: white;
@@ -26,21 +26,21 @@
                     <DropShadow color="red" spread="0.3"/>
                 </effect>
             </Label>
-            
-            <Label fx:id="player1ScoreLabel" 
-                   prefWidth="120" 
+
+            <Label fx:id="player1ScoreLabel"
+                   prefWidth="120"
                    style="-fx-text-fill: #ff0000;
                           -fx-font-size: 16px;
-                          -fx-font-weight: bold;" 
+                          -fx-font-weight: bold;"
                    text="Score: 0"/>
-                   
+
             <GridPane hgap="10" vgap="10">
-                <Button fx:id="button1_1" prefHeight="80" prefWidth="100" 
+                <Button fx:id="button1_1" prefHeight="80" prefWidth="100"
                         style="-fx-background-color: #2a1f1f;
                                -fx-text-fill: white;
                                -fx-background-radius: 10;
-                               -fx-font-weight: bold;" 
-                        GridPane.columnIndex="0" GridPane.rowIndex="0" 
+                               -fx-font-weight: bold;"
+                        GridPane.columnIndex="0" GridPane.rowIndex="0"
                         onAction="#handleChoosingBox">
                     <effect>
                         <DropShadow color="red" spread="0.1"/>
@@ -52,7 +52,7 @@
                 <Button fx:id="button1_4" prefHeight="80" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#handleChoosingBox" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;"><effect><DropShadow color="red" spread="0.1"/></effect></Button>
                 <Button fx:id="button1_5" prefHeight="80" prefWidth="100" GridPane.columnIndex="0" GridPane.rowIndex="2" onAction="#handleChoosingBox" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;"><effect><DropShadow color="red" spread="0.1"/></effect></Button>
                 <Button fx:id="button1_6" prefHeight="80" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#handleChoosingBox" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;"><effect><DropShadow color="red" spread="0.1"/></effect></Button>
-                
+
                 <columnConstraints>
                     <ColumnConstraints />
                     <ColumnConstraints />
@@ -67,27 +67,27 @@
 
         <!-- Right Player Panel -->
         <VBox alignment="CENTER" spacing="15">
-            <Label fx:id="player2Label" 
-                   prefWidth="200" 
+            <Label fx:id="player2Label"
+                   prefWidth="200"
                    style="-fx-background-color: #800000;
                           -fx-padding: 10px;
                           -fx-text-fill: white;
                           -fx-font-size: 18px;
                           -fx-font-weight: bold;
-                          -fx-background-radius: 10;" 
+                          -fx-background-radius: 10;"
                    text="Player 2">
                 <effect>
                     <DropShadow color="red" spread="0.3"/>
                 </effect>
             </Label>
-            
-            <Label fx:id="player2ScoreLabel" 
-                   prefWidth="120" 
+
+            <Label fx:id="player2ScoreLabel"
+                   prefWidth="120"
                    style="-fx-text-fill: #ff0000;
                           -fx-font-size: 16px;
-                          -fx-font-weight: bold;" 
+                          -fx-font-weight: bold;"
                    text="Score: 0"/>
-                   
+
             <GridPane hgap="10" vgap="10">
                 <!-- Same button style pattern for player 2 buttons -->
                 <Button fx:id="button2_1" prefHeight="80" prefWidth="100" GridPane.columnIndex="0" GridPane.rowIndex="0" onAction="#handleChoosingBox" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;"><effect><DropShadow color="red" spread="0.1"/></effect></Button>
@@ -96,7 +96,7 @@
                 <Button fx:id="button2_4" prefHeight="80" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#handleChoosingBox" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;"><effect><DropShadow color="red" spread="0.1"/></effect></Button>
                 <Button fx:id="button2_5" prefHeight="80" prefWidth="100" GridPane.columnIndex="0" GridPane.rowIndex="2" onAction="#handleChoosingBox" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;"><effect><DropShadow color="red" spread="0.1"/></effect></Button>
                 <Button fx:id="button2_6" prefHeight="80" prefWidth="100" GridPane.columnIndex="1" GridPane.rowIndex="2" onAction="#handleChoosingBox" style="-fx-background-color: #2a1f1f; -fx-text-fill: white; -fx-background-radius: 10; -fx-font-weight: bold;"><effect><DropShadow color="red" spread="0.1"/></effect></Button>
-                
+
                 <columnConstraints>
                     <ColumnConstraints />
                     <ColumnConstraints />
@@ -117,31 +117,31 @@
             <effect>
                 <DropShadow color="red" spread="0.2"/>
             </effect>
-            
-            <Label text="Chat Area" 
+
+            <Label fx:id="timeCounter" text=""
                    style="-fx-text-fill: #ff0000;
                           -fx-font-size: 18px;
                           -fx-font-weight: bold;"/>
-                          
-            <TextArea fx:id="chatArea" 
-                      editable="false" 
-                      prefHeight="250" 
+
+            <TextArea fx:id="chatArea"
+                      editable="false"
+                      prefHeight="250"
                       prefWidth="300"
                       style="-fx-control-inner-background: #1a0f0f;
                              -fx-text-fill: white;
                              -fx-background-radius: 10;"/>
-                             
+
             <HBox spacing="10">
-                <TextField fx:id="chatInput" 
-                          promptText="Enter message" 
-                          prefWidth="220"
-                          style="-fx-background-color: #1a0f0f;
+                <TextField fx:id="chatInput"
+                           promptText="Enter message"
+                           prefWidth="220"
+                           style="-fx-background-color: #1a0f0f;
                                  -fx-text-fill: white;
                                  -fx-prompt-text-fill: #666666;
                                  -fx-background-radius: 10;"/>
-                                 
-                <Button fx:id="sendButton" 
-                        text="Send" 
+
+                <Button fx:id="sendButton"
+                        text="Send"
                         onAction="#handleSendChat"
                         style="-fx-background-color: #800000;
                                -fx-text-fill: white;
@@ -152,9 +152,9 @@
                     </effect>
                 </Button>
             </HBox>
-            
-            <Button fx:id="quitButton" 
-                    text="Thoát Trận" 
+
+            <Button fx:id="quitButton"
+                    text="Thoát Trận"
                     onAction="#handleQuitGame"
                     prefWidth="150"
                     style="-fx-background-color: #800000;

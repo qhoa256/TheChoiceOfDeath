@@ -105,6 +105,9 @@ public class ClientHandler implements Runnable {
             case "play_again_response":
                 handlePlayAgainResponse(message);
                 break;
+            case "player_time_out":
+                handleTimeOut();
+                break;
             case "get_leaderboard":
                 handleGetLeaderboard();
                 break;
@@ -126,7 +129,11 @@ public class ClientHandler implements Runnable {
         }
     }
 
-
+    private void handleTimeOut() throws IOException, SQLException{
+        if (gameRoom != null){
+            gameRoom.handleTimeOut(this);
+        }
+    }
     private void handleGetMatchDetails(Message message) throws IOException, SQLException {
         int matchId = (int) message.getContent();
         List<MatchDetails> details = dbManager.getMatchDetails(matchId);
@@ -175,7 +182,7 @@ public class ClientHandler implements Runnable {
             server.broadcast(new Message("status_update", user.getUsername() + " đã online."));
             server.addClient(user.getId(), this); // Thêm client vào danh sách server
         } else {
-            sendMessage(new Message("login_failure", "Tên đăng nhập hoặc mật khẩu không đúng."));
+            sendMessage(new Message("login_failure", "Ta biết mọi thứ về ngươi. Ngươi đang nói dối."));
         }
     }
 
@@ -212,7 +219,7 @@ public class ClientHandler implements Runnable {
                 System.out.println("Opponent is not online.");
             }
         } else {
-            sendMessage(new Message("match_response", "Người chơi không tồn tại hoặc không online."));
+            sendMessage(new Message("match_response", "Người chơi không tồn tại hoặc đã biến mất."));
             System.out.println("Opponent not found.");
         }
     }
@@ -230,7 +237,7 @@ public class ClientHandler implements Runnable {
                 requester.gameRoom = newGameRoom;
                 newGameRoom.startMatch();
             } else {
-                requester.sendMessage(new Message("match_response", "Yêu cầu trận đấu của bạn đã bị từ chối."));
+                requester.sendMessage(new Message("match_response", "Yêu cầu trận đấu của ngươi đã bị từ chối."));
             }
         }
     }
@@ -271,6 +278,4 @@ public class ClientHandler implements Runnable {
     public void clearGameRoom() {
         this.gameRoom = null;
     }
-
-
 }

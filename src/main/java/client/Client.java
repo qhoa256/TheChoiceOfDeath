@@ -164,6 +164,13 @@ public class Client {
                     }
                 });
                 break;
+            case "match_end_left":
+                Platform.runLater(() -> {
+                    if (gameRoomController != null) {
+                        gameRoomController.endMatchLeft((String) message.getContent());
+                    }
+                });
+                break;
             case "your_turn":
                 String process = (String) message.getContent();
                 Platform.runLater(() -> {
@@ -271,7 +278,7 @@ public class Client {
             }
 
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Death Choose - Main");
+            primaryStage.setTitle("Death Choice - Main");
             primaryStage.setMinWidth(400);
             primaryStage.setMinHeight(300);
             primaryStage.show();
@@ -307,7 +314,7 @@ public class Client {
             }
 
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Death Choose");
+            primaryStage.setTitle("Death Choice");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -340,7 +347,7 @@ public class Client {
             }
 
             primaryStage.setScene(scene);
-            primaryStage.setTitle("Death Choose - Game Room");
+            primaryStage.setTitle("Death Choice - Game Room");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();
