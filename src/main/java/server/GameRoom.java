@@ -30,6 +30,7 @@ public class GameRoom {
         this.currentRound = 1;
 
         randMatrix();
+
         this.player1Handler = player1;
         this.player2Handler = player2;
     }
@@ -54,6 +55,13 @@ public class GameRoom {
                     matrixPlayer2[i][j] = 0;
                 }
             }
+        }
+        System.out.println("MATRIX 1:");
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 2; j++) {
+                System.out.print(matrixPlayer1[i][j] + " ");
+            }
+            System.out.println();
         }
     }
     public void startMatch() {
@@ -251,7 +259,7 @@ public class GameRoom {
         }
     }
     //Tổng kết kết quả
-    private void determineWinner() throws SQLException, IOException {
+    private void determineWiner() throws SQLException, IOException {
         //winner dùng để lưu id người thắng. Nếu hoà thì id sẽ = 0 và import vào trong csdl giá trị là null
         int winnerId = 0;
         String resultMessage = "";
@@ -272,13 +280,12 @@ public class GameRoom {
         } else {
             // Nếu hòa, cập nhật winnerId là 0
             dbManager.updateMatchWinner(matchId, 0);
-            dbManager.updateUserScore(player1Handler.getUser().getId(), 1);
-            dbManager.updateUserScore(player2Handler.getUser().getId(), 1);
+            dbManager.updateUserScore(player1Handler.getUser().getId(), 2);
+            dbManager.updateUserScore(player2Handler.getUser().getId(), 2);
         }
 
         player1Handler.sendMessage(new Message("match_end", resultMessage));
         player2Handler.sendMessage(new Message("match_end", resultMessage));
-
     }
 
     // Xử lý yêu cầu chơi lại
@@ -390,5 +397,38 @@ public class GameRoom {
         // Sử dụng phương thức clearGameRoom() để đặt gameRoom thành null
         if (player1Handler != null) player1Handler.clearGameRoom();
         if (player2Handler != null) player2Handler.clearGameRoom();
+    }
+
+    private void determineWinner() throws SQLException, IOException {
+        //winner dùng để lưu id người thắng. Nếu hoà thì id sẽ = 0 và import vào trong csdl giá trị là null
+        int winnerId = 0;
+        String resultMessage = "";
+        System.out.println(player1Score + " " + player2Score);
+        if (player1Score > player2Score) {
+            winnerId = player1Handler.getUser().getId();
+            resultMessage = player1Handler.getUser().getUsername() + " thắng trận đấu!";
+        } else if (player2Score > player1Score) {
+            winnerId = player2Handler.getUser().getId();
+            resultMessage = player2Handler.getUser().getUsername() + " thắng trận đấu!";
+        } else {
+            resultMessage = "Trận đấu hòa!";
+        }
+        System.out.println(resultMessage);
+        if (winnerId != 0) {
+            dbManager.updateUserScore(winnerId, 3);
+            dbManager.updateMatchWinner(matchId, winnerId);
+        } else {
+            // Nếu hòa, cập nhật winnerId là 0
+            dbManager.updateMatchWinner(matchId, 0);
+            dbManager.updateUserScore(player1Handler.getUser().getId(), 1);
+            dbManager.updateUserScore(player2Handler.getUser().getId(), 1);
+        }
+
+        player1Handler.sendMessage(new Message("match_end", resultMessage));
+        player2Handler.sendMessage(new Message("match_end", resultMessage));
+    }
+
+    private void End() throws SQLException, IOException {
+        determineWiner();
     }
 }

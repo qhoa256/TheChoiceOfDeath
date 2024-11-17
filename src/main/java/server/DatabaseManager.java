@@ -242,9 +242,10 @@ CREATE TABLE match_details (
     FOREIGN KEY (match_id) REFERENCES matches(id)
 );
 INSERT INTO users (username, password, score, status) VALUES
-('player1', 'password1', 10, 'offline'),
-('player2', 'password2', 15, 'offline'),
-('player3', 'password3', 5, 'offline');
+('hoanhq', '1', 10, 'offline'),
+('dangch', '2', 15, 'offline'),
+('binhnt', '3', 5, 'offline'),
+('nguyetdtt', '4', 5, 'offline');
  */
 
 
